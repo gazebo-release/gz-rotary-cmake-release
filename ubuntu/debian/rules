@@ -1,0 +1,17 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+.PHONY: override_dh_auto_configure override_dh_auto_install
+
+%:
+	dh $@ --buildsystem=cmake
+
+override_dh_auto_configure:
+	dh_auto_configure -- \
+            -DCMAKE_BUILD_TYPE=RelWithDebInfo
+
+override_dh_auto_install:
+	# Remove artifacts installed by testing
+	dh_auto_install --destdir=debian/tmp
+	find . -type d -name install | xargs rm -rf
+	find . -type d -empty -delete

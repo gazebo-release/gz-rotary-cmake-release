@@ -1,0 +1,37 @@
+#!/bin/sh
+# autopkgtest check: Build and run a program against gz-cmake, to verify that the
+# cmake modules are installed
+# (C) 2012 Jose Luis Rivero
+# Author: Jose Luis Rivero <jrivero@osrfoundation.org>
+
+set -e
+
+WORKDIR=$(mktemp -d)
+trap "rm -rf $WORKDIR" 0 INT QUIT ABRT PIPE TERM
+cd $WORKDIR
+mkdir -p $WORKDIR/doc $WORKDIR/src $WORKDIR/include $WORKDIR/test
+touch $WORKDIR/doc/CMakeLists.txt $WORKDIR/src/CMakeLists.txt $WORKDIR/include/CMakeLists.txt $WORKDIR/test/CMakeLists.txt
+cat <<EOF > CMakeLists.txt
+cmake_minimum_required(VERSION 3.5)
+
+project(test VERSION 1.0.0)
+
+#============================================================================
+# Find gz-cmake
+#============================================================================
+# If you get an error at this line, you need to install gz-cmake
+find_package(gz-cmake REQUIRED)
+
+#============================================================================
+# Set up the project
+#============================================================================
+gz_configure_project()
+
+#============================================================================
+# Configure the build
+#============================================================================
+gz_configure_build(QUIT_IF_BUILD_ERRORS)
+EOF
+
+cmake .
+echo "configure: OK"

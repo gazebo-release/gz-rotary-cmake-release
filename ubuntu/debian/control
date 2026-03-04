@@ -1,0 +1,35 @@
+Source: gz-cmake
+Maintainer: Jose Luis Rivero <jrivero@osrfoundation.org>
+Section: science
+Priority: optional
+Build-Depends: cmake,
+               pkg-config,
+               debhelper (>= 13)
+Vcs-Browser: https://github.com/gazebosim/gz-cmake
+Vcs-Git: https://github.com/gazebosim/gz-cmake.git
+Standards-Version: 4.5.1
+Homepage: http://gazebosim.org/
+
+Package: libgz-cmake-dev
+Architecture: any
+Section: libdevel
+Depends: cmake, ${misc:Depends}
+Provides: libgz-cmake-dev-generic
+Conflicts: libgz-cmake-dev-generic, libgz-cmake2-dev, libgz-cmake3-dev, libgz-cmake4-dev, libgz-cmake5-dev
+Replaces: libgz-cmake2-dev, libgz-cmake3-dev, libgz-cmake4-dev, libgz-cmake5-dev
+Multi-Arch: same
+Description: Gazebo CMake Library - Development files
+ CMake modules to be used by the Gazebo projects.
+ .
+ This package is required to build Gazebo projects, as well as to link your
+ third party projects against them. It provides modules that are used to find
+ dependencies of Gazebo projects and generate cmake targets for consumers of
+ Gazebo projects to link against.
+
+Package: libgz-rotary-cmake-dev
+Depends: libgz-cmake-dev (= ${binary:Version}), ${misc:Depends}
+Architecture: all
+Priority: optional
+Section: metapackages
+Description: alias package
+ Provides a package for Rotary without exposing the version number.
