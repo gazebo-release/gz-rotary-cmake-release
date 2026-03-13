@@ -26,7 +26,7 @@ Description: Gazebo CMake Library - Development files
  dependencies of Gazebo projects and generate cmake targets for consumers of
  Gazebo projects to link against.
 
-Package: libgz-rotary-cmake-dev
+Package: gz-rotary-cmake-dev
 Depends: libgz-cmake-dev (= ${binary:Version}), ${misc:Depends}
 Architecture: all
 Priority: optional
