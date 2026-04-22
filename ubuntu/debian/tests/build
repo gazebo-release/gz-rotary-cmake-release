@@ -12,7 +12,7 @@ cd $WORKDIR
 mkdir -p $WORKDIR/doc $WORKDIR/src $WORKDIR/include $WORKDIR/test
 touch $WORKDIR/doc/CMakeLists.txt $WORKDIR/src/CMakeLists.txt $WORKDIR/include/CMakeLists.txt $WORKDIR/test/CMakeLists.txt
 cat <<EOF > CMakeLists.txt
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.22.1)
 
 project(test VERSION 1.0.0)
 
